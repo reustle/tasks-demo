@@ -1,0 +1,74 @@
+<head>
+	<title>My Tasks List</title>
+	<style>
+		h2 {
+			margin: 10px;
+		}
+		.form-group {
+			margin: 0px 10px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div>
+		<h2>Task List</h2>
+
+		{{> taskList }}
+		
+		{{> taskForm }}
+	</div>
+	
+</body>
+
+
+<template name='taskList'>
+	
+	<table class='table table-striped'>
+		<tbody>
+			{{#each tasks }}
+				{{> taskItem }}
+			{{else}}
+				<tr class='bg-info'>
+					<td colspan='3'>The task list is empty! 👍 </td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	
+</template>
+
+
+<template name='taskItem'>
+	
+	<tr class='{{#if completed }}success{{/if}}'>
+		
+		<td width='35px'>
+			<input type='checkbox' checked='{{#if completed}}checked{{/if}}'/>
+		</td>
+		
+		<td>{{ description }}</td>
+		
+		<td class='text-right' width='80px'>
+			<button class='btn btn-danger btn-xs' data-action='remove'>
+				<i class='glyphicon glyphicon-remove'></i>
+			</button>
+		</td>
+	</tr>
+	
+</template>
+
+
+<template name='taskForm'>
+	
+	<div class='form-group'>
+		<div class='input-group'>
+			<input type='text' class='form-control' placeholder='Describe the task'/>
+			<span class='input-group-btn'>
+				<button class='btn btn-primary'>Add Task</button>
+			</span>
+		</div>
+	</div>
+	
+</template>
+
